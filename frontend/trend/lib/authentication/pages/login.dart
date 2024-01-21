@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trend/authentication/data/remote_data_source.dart';
+import 'package:trend/authentication/pages/forget_password.dart';
 import 'package:trend/authentication/pages/register.dart';
 import 'package:trend/home/home_page.dart';
 
@@ -11,7 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
 
@@ -25,26 +26,26 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Spacer(flex: 2),
+                const Spacer(flex: 2),
                 Container(
                   height: 50, // Set the desired height here
                   child: TextField(
-                    controller: usernameController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                             color: Colors
                                 .blue), // Set the desired border color here
                       ),
-                      labelText: 'username',
+                      labelText: 'email',
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   height: 50, // Set the desired height here
                   child: TextField(
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                             color: Colors
                                 .blue), // Set the desired border color here
                       ),
@@ -63,21 +64,20 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity, // Set the desired width here
                   child: ElevatedButton(
                     onPressed: () {
-                      if (usernameController.text.isEmpty ||
+                      if (emailController.text.isEmpty ||
                           passwordController.text.isEmpty) {
                         return;
                       }
-                      loginUser(
-                          usernameController.text, passwordController.text);
+                      loginUser(emailController.text, passwordController.text);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomePage(),
+                          builder: (context) => const HomePage(),
                         ),
                       );
                     },
@@ -93,14 +93,20 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [],
-                ),
-                Spacer(),
+                const SizedBox(height: 20),
                 TextButton(
-                  child: Text('Don\'t have an account?'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ForgetPassword(),
+                        ),
+                      );
+                    },
+                    child: Text('ForgetPassword?')),
+                const Spacer(),
+                TextButton(
+                  child: const Text('Don\'t have an account?'),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -110,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
               ],
             ),
           ),

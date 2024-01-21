@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trend/widgets/bottomNavBar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,9 +11,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Home Page'),
+    return const Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Color.fromARGB(255, 179, 179, 179),
+            title: Text(
+              'TREND',
+              style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 5),
+            ),
+            centerTitle: false,
+            floating: true,
+          ),
+        ],
       ),
     );
   }

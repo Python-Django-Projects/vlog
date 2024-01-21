@@ -18,11 +18,11 @@ void createAccount(String email, username, password, password2) async {
   }
 }
 
-void loginUser(String username, password) async {
+void loginUser(String email, password) async {
   final response = await http.post(
     Uri.parse("http://127.0.0.1:8000/api/token/"),
     body: {
-      "username": username,
+      "email": email,
       "password": password,
     },
   );
@@ -33,5 +33,6 @@ void loginUser(String username, password) async {
   } else {
     print("Login failed");
     print('Response body: ${response.body}');
+    print('Response body: ${response.statusCode}');
   }
 }

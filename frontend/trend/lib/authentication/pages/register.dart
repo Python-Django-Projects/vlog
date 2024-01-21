@@ -104,7 +104,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 20),
                 SizedBox(
-                  width: double.infinity, // Set the desired width here
+                  width: double.infinity,
+                  // Set the desired width here
                   child: ElevatedButton(
                     onPressed: () {
                       createAccount(
