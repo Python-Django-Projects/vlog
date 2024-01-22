@@ -151,13 +151,14 @@ class _PostsInteractions extends StatefulWidget {
 }
 
 class __PostsInteractionsState extends State<_PostsInteractions> {
+  final String _userName = 'ali';
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 400,
       child: Column(
         children: [
-          Row(
+          const Row(
             children: [
               CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -174,27 +175,46 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
               Text('Likes'),
             ],
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'user_name',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(
-                child: Container(
-                  child: Text(
-                    'Here iaterimplement API laterimplement API later',
-                    maxLines: 3,
+          Container(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                    // color: Colors.red.shade400,
+                    ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Expanded(
+                  child: Container(
+                    child: RichText(
+                      maxLines: 3,
+                      text: TextSpan(
+                        text: '$_userName  ',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                        children: const [
+                          TextSpan(
+                            text:
+                                'My other Line should be herer Line should be herer Line should be herer Line should be herer Line should be herer Line should be herer Line should be here',
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          Row(
+          const Row(
             children: [
               Text('View all 18 comments'),
             ],
@@ -216,8 +236,8 @@ class __MainPostContainerState extends State<_MainPostContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-      children: const [
+        child: const Column(
+      children: [
         _PostHeader(),
         _Post(),
         _PostInteractionButtons(),
