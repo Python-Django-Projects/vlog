@@ -1,61 +1,40 @@
 import 'package:flutter/material.dart';
 
-// Define a class to represent the data for each post
-class PostData {
-  final String username;
-  final String avatarUrl;
-  final String imageUrl;
-  final int likesCount;
-  final String description;
-  final int commentsCount;
-
-  PostData({
-    required this.username,
-    required this.avatarUrl,
-    required this.imageUrl,
-    required this.likesCount,
-    required this.description,
-    required this.commentsCount,
-  });
-}
-
-// Widget to display a single post
-class PostWidget extends StatelessWidget {
-  final PostData postData;
-
-  const PostWidget({Key? key, required this.postData}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Display the header of the post
-        _PostHeader(username: postData.username, avatarUrl: postData.avatarUrl),
-
-        // Display the main content of the post (image)
-        _Post(imageUrl: postData.imageUrl),
-
-        // Display interaction buttons (like, comment, share)
-        _PostInteractionButtons(likesCount: postData.likesCount),
-
-        // Display post interactions (username, description, comments count)
-        _PostsInteractions(
-          username: postData.username,
-          description: postData.description,
-          commentsCount: postData.commentsCount,
+    return Scaffold(
+      appBar: AppBar(
+        title: (const Text(
+          'TREND',
+          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 5),
+        )),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(5.0),
+          child: Container(
+            height: 1,
+            color: Colors.black.withOpacity(0.1),
+          ),
         ),
-      ],
+      ),
+      body: Container(
+        child: const Column(
+          children: [_MainPostContainer()],
+        ),
+      ),
     );
   }
 }
 
-// Header of the post containing the user's avatar and username
 class _PostHeader extends StatelessWidget {
-  const _PostHeader({Key? key, required this.username, required this.avatarUrl})
-      : super(key: key);
-
-  final String username;
-  final String avatarUrl;
+  const _PostHeader();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +43,6 @@ class _PostHeader extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            // User's avatar
             const CircleAvatar(
               backgroundImage: NetworkImage(
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrRMHThLy0_Kq7eU7AwuhDoOiI5yyIyQQARA&usqp=CAU',
@@ -92,39 +70,42 @@ class _PostHeader extends StatelessWidget {
   }
 }
 
-// Main content of the post (image)
-class _Post extends StatelessWidget {
-  const _Post({Key? key, required this.imageUrl}) : super(key: key);
+class _Post extends StatefulWidget {
+  const _Post({super.key});
 
-  final String imageUrl;
+  @override
+  State<_Post> createState() => __PostState();
+}
 
+class __PostState extends State<_Post> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       child: Image.network(
-        imageUrl,
+        "https://avatars.mds.yandex.net/i?id=8437e262024b4e10bd9f92d52253abf7-5357304-images-taas-consumers&n=27&h=480&w=480",
         fit: BoxFit.cover,
       ),
     );
   }
 }
 
-// Interaction buttons (like, comment, share)
-class _PostInteractionButtons extends StatelessWidget {
-  const _PostInteractionButtons({Key? key, required this.likesCount})
-      : super(key: key);
+class _PostInteractionButtons extends StatefulWidget {
+  const _PostInteractionButtons({super.key});
 
-  final int likesCount;
+  @override
+  State<_PostInteractionButtons> createState() =>
+      __PostInteractionButtonsState();
+}
 
+class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // Like button
           Row(
             children: [
               Icon(Icons.favorite),
@@ -134,8 +115,6 @@ class _PostInteractionButtons extends StatelessWidget {
               Text('like'),
             ],
           ),
-
-          // Comment button
           Row(
             children: [
               Icon(Icons.comment),
@@ -145,8 +124,6 @@ class _PostInteractionButtons extends StatelessWidget {
               Text('Comment'),
             ],
           ),
-
-          // Share button
           Row(
             children: [
               Icon(Icons.share),
@@ -166,140 +143,86 @@ class _PostInteractionButtons extends StatelessWidget {
   }
 }
 
-// Post interactions (username, description, comments count)
-class _PostsInteractions extends StatelessWidget {
-  const _PostsInteractions(
-      {Key? key,
-      required this.username,
-      required this.description,
-      required this.commentsCount})
-      : super(key: key);
-
-  final String username;
-  final String description;
-  final int commentsCount;
+class _PostsInteractions extends StatefulWidget {
+  const _PostsInteractions({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: Container(
-        child: Column(
-          children: [
-            // Display user avatar and likes count
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNNl92qNwzhP_M2qyyq78DG2GPMokRD1WfmA&usqp=CAU'),
-                  radius: 13,
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text('static'),
-                SizedBox(
-                  width: 5,
-                ),
-                Text('Likes'),
-              ],
-            ),
-
-            // Display username and description
-            Row(
-              children: [
-                Text(
-                  username,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(description),
-              ],
-            ),
-
-            // Display comments count
-            Row(
-              children: [
-                Text('View all $commentsCount comments'),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  State<_PostsInteractions> createState() => __PostsInteractionsState();
 }
 
-// Main HomePage class
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-// State class for HomePage
-class _HomePageState extends State<HomePage> {
-  // Dummy list of posts
-  List<PostData> posts = [
-    PostData(
-      username: 'ali',
-      avatarUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrRMHThLy0_Kq7eU7AwuhDoOiI5yyIyQQARA&usqp=CAU',
-      imageUrl:
-          'https://avatars.mds.yandex.net/i?id=8437e262024b4e10bd9f92d52253abf7-5357304-images-taas-consumers&n=27&h=480&w=480',
-      likesCount: 1234,
-      description: 'Here is my description, and I will implement API later',
-      commentsCount: 18,
-    ),
-    // Add more posts as needed
-  ];
-
+class __PostsInteractionsState extends State<_PostsInteractions> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'TREND',
-          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 5),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(5.0),
-          child: Container(
-            height: 1,
-            color: Colors.black.withOpacity(0.1),
+    return Container(
+      width: 400,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNNl92qNwzhP_M2qyyq78DG2GPMokRD1WfmA&usqp=CAU'),
+                radius: 13,
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Text('1234'),
+              SizedBox(
+                width: 5,
+              ),
+              Text('Likes'),
+            ],
           ),
-        ),
-      ),
-      // Use ListView.builder to display a list of posts
-      body: ListView.builder(
-        itemCount: posts.length,
-        itemBuilder: (context, index) {
-          // Use PostWidget to display each post
-          return PostWidget(postData: posts[index]);
-        },
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'user_name',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Expanded(
+                child: Container(
+                  child: Text(
+                    'Here iaterimplement API laterimplement API later',
+                    maxLines: 3,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text('View all 18 comments'),
+            ],
+          ),
+        ],
       ),
     );
   }
 }
 
-// Entry point of the Flutter app
-void main() {
-  runApp(MyApp());
+class _MainPostContainer extends StatefulWidget {
+  const _MainPostContainer({super.key});
+
+  @override
+  State<_MainPostContainer> createState() => __MainPostContainerState();
 }
 
-// MyApp class to configure and run the app
-class MyApp extends StatelessWidget {
+class __MainPostContainerState extends State<_MainPostContainer> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
-    );
+    return Container(
+        child: Column(
+      children: const [
+        _PostHeader(),
+        _Post(),
+        _PostInteractionButtons(),
+        _PostsInteractions(),
+      ],
+    ));
   }
 }
