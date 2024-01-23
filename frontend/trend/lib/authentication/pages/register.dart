@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trend/authentication/data/remote_data_source.dart';
 import 'package:trend/authentication/pages/login.dart';
-import 'package:trend/home/home_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

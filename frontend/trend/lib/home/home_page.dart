@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trend/home/bottom_nav.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,9 +25,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: const Column(
-          children: [_MainPostContainer()],
+          children: [
+            _MainPostContainer(),
+            SizedBox(
+              height: 20,
+            ),
+            _MainPostContainer(),
+          ],
         ),
       ),
     );
