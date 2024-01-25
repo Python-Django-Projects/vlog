@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:trend/authentication/pages/forget_password.dart';
 import 'package:trend/home/camera.dart';
 import 'package:trend/home/home_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -29,7 +30,7 @@ class BottomNavBar extends StatelessWidget {
       const HomePage(),
       const CameraPage(),
       const VlogPage(),
-      const ProfilePage()
+      ForgetPassword(),
     ];
   }
 
@@ -37,25 +38,25 @@ class BottomNavBar extends StatelessWidget {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.home),
-        title: "",
+        title: "_",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.camera),
-        title: "",
+        title: "_",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.play_arrow),
-        title: "",
+        title: "_",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.profile_circled),
-        title: "",
+        title: "_",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),

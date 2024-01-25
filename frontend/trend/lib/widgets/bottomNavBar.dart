@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trend/authentication/pages/forget_password.dart';
 import 'package:trend/home/camera.dart';
 import 'package:trend/home/home_page.dart';
 import 'package:trend/home/profile.dart';
@@ -14,10 +15,10 @@ class BottomNavBarPage extends StatefulWidget {
 class _BottomNavBarPageState extends State<BottomNavBarPage> {
   int currentIndex = 0;
   final screens = <Widget>[
-    const HomePage(), // This line causes an infinite loop
+    const HomePage(),
     const CameraPage(),
     const VlogPage(),
-    const ProfilePage(),
+    ForgetPassword(),
   ];
 
   @override

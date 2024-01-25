@@ -38,3 +38,6 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
+class ResetPasswordEmailSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)

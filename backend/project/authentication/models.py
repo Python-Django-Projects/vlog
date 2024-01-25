@@ -5,6 +5,12 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.dispatch import receiver
 from django.utils import timezone
 from django.db.models.signals import post_save
+from django.contrib.auth.tokens import default_token_generator
+from base64 import urlsafe_b64encode
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.core.mail import send_mail
+
 # from django.core.validators import RegexValidator
 
 
@@ -50,3 +56,23 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+
+    def send_password_reset_email(self, request):
+        token = default_token_generator.make_token(self)
+        uid = urlsafe_b64encode(force_bytes(self.pk)).decode()  
+        current_site = get_current_site(request)
+        mail_subject = 'Reset your password'
+        # create the message as a string
+        message = f"""
+        Hi {self.email},
+
+        We received a request to reset your password. Click the link below to choose a new password:
+
+        http://{current_site.domain}/reset/{uid}/{token}
+
+        If you didn't request a password reset, you can ignore this email.
+
+        Thanks,
+        Your team
+        """
+        send_mail(mail_subject, message, 'admin@mywebsite.com', [self.email])
