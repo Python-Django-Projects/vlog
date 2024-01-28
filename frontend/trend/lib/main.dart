@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trend/authentication/pages/forget_password.dart';
 import 'package:trend/home/camera.dart';
 import 'package:trend/home/home_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -30,7 +29,7 @@ class BottomNavBar extends StatelessWidget {
       const HomePage(),
       const CameraPage(),
       const VlogPage(),
-      ForgetPassword(),
+      const ProfilePage()
     ];
   }
 

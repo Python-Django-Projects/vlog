@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # my apps
     'authentication',
+    'post',
     
     # rest framework
     'rest_framework',

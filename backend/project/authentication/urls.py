@@ -3,7 +3,7 @@ from .views import (
     CustomUserList,
     CustomUserDetail,
     CustomUserRegister,
-    PasswordResetRequestView
+    PasswordResetRequestView,
 )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,

@@ -10,7 +10,7 @@ class VlogPage extends StatefulWidget {
 class _VlogPageState extends State<VlogPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text('Vlog Page'),
       ),
