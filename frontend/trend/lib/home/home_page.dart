@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:trend/posts/data/models.dart';
+import 'package:trend/posts/data/remote_data.dart';
+import 'package:trend/widgets/comment_sheet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -7,65 +10,87 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// no code framework
 class _HomePageState extends State<HomePage> {
+  List<PostModel> posts = [];
+
+  ///2
+  @override
+  void initState() {
+    super.initState();
+    displayPosts();
+  }
+
+//1
+  void displayPosts() async {
+    final List<PostModel> posts = await fetchPosts();
+    setState(() {
+      this.posts = posts;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: (const Text(
+        title: (Text(
           'TREND',
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 5),
         )),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(5.0),
+          preferredSize: Size.fromHeight(5.0),
           child: Container(
             height: 1,
             color: Colors.black.withOpacity(0.1),
           ),
         ),
       ),
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            _MainPostContainer(),
-            SizedBox(
-              height: 20,
-            ),
-            _MainPostContainer(),
-          ],
-        ),
+      body: Expanded(
+        child: ListView.builder(
+            itemCount: posts.length,
+            itemBuilder: (context, index) {
+              return _MainPostContainer(
+                post: posts[index],
+              );
+            }),
       ),
     );
   }
 }
 
-class _PostHeader extends StatelessWidget {
-  const _PostHeader();
+class _PostHeader extends StatefulWidget {
+  const _PostHeader({super.key, required this.post});
+  final PostModel post;
 
+  @override
+  State<_PostHeader> createState() => _PostHeaderState();
+}
+
+class _PostHeaderState extends State<_PostHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0),
         child: Row(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               backgroundImage: NetworkImage(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrRMHThLy0_Kq7eU7AwuhDoOiI5yyIyQQARA&usqp=CAU',
+                widget.post.image,
               ),
               radius: 21,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
                 'ali',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
-            const Spacer(),
+            Spacer(),
             IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.more_horiz,
                   color: Colors.black,
                 ))
@@ -77,8 +102,8 @@ class _PostHeader extends StatelessWidget {
 }
 
 class _Post extends StatefulWidget {
-  const _Post({super.key});
-
+  const _Post({super.key, required this.post});
+  final PostModel post;
   @override
   State<_Post> createState() => __PostState();
 }
@@ -89,7 +114,7 @@ class __PostState extends State<_Post> {
     return Container(
       width: double.infinity,
       child: Image.network(
-        "https://avatars.mds.yandex.net/i?id=8437e262024b4e10bd9f92d52253abf7-5357304-images-taas-consumers&n=27&h=480&w=480",
+        widget.post.image,
         fit: BoxFit.cover,
       ),
     );
@@ -109,7 +134,7 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
@@ -150,7 +175,11 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
 }
 
 class _PostsInteractions extends StatefulWidget {
-  const _PostsInteractions({super.key});
+  const _PostsInteractions({
+    super.key,
+    required this.post,
+  });
+  final PostModel post;
 
   @override
   State<_PostsInteractions> createState() => __PostsInteractionsState();
@@ -164,7 +193,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
       width: 400,
       child: Column(
         children: [
-          const Row(
+          Row(
             children: [
               CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -174,7 +203,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
               SizedBox(
                 width: 5,
               ),
-              Text('1234'),
+              Text('422'),
               SizedBox(
                 width: 5,
               ),
@@ -188,7 +217,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
                 Container(
                     // color: Colors.red.shade400,
                     ),
-                const SizedBox(
+                SizedBox(
                   width: 5,
                 ),
                 Expanded(
@@ -197,15 +226,16 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
                       maxLines: 3,
                       text: TextSpan(
                         text: '$_userName  ',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                           color: Colors.black,
                         ),
-                        children: const [
+                        children: [
                           TextSpan(
-                            text:
-                                'My other Line should be herer Line should be herer Line should be herer Line should be herer Line should be herer Line should be herer Line should be here',
+                            text: widget.post.description.isNotEmpty
+                                ? widget.post.description
+                                : 'No comment here',
                             style: TextStyle(
                               fontWeight: FontWeight.normal,
                               fontSize: 16,
@@ -220,9 +250,27 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
               ],
             ),
           ),
-          const Row(
+          Row(
             children: [
-              Text('View all 18 comments'),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      backgroundColor: Colors.white,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CommentSheet(
+                          post: widget.post,
+                          description: widget.post.description,
+                          image: widget.post.image,
+                        );
+                      },
+                    );
+                  },
+                  child: Text('View all 18 comments'),
+                ),
+              ),
             ],
           ),
         ],
@@ -232,8 +280,8 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
 }
 
 class _MainPostContainer extends StatefulWidget {
-  const _MainPostContainer({super.key});
-
+  const _MainPostContainer({super.key, required this.post});
+  final PostModel post;
   @override
   State<_MainPostContainer> createState() => __MainPostContainerState();
 }
@@ -242,12 +290,19 @@ class __MainPostContainerState extends State<_MainPostContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: const Column(
+        child: Column(
       children: [
-        _PostHeader(),
-        _Post(),
+        _PostHeader(post: widget.post),
+        _Post(
+          post: widget.post,
+        ),
         _PostInteractionButtons(),
-        _PostsInteractions(),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _PostsInteractions(
+            post: widget.post,
+          ),
+        ),
       ],
     ));
   }

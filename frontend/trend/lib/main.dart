@@ -26,7 +26,7 @@ class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});
   List<Widget> _buildScreens() {
     return [
-      const HomePage(),
+      HomePage(),
       const CameraPage(),
       const VlogPage(),
       const ProfilePage()
