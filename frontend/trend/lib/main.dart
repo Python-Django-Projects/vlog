@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: BottomNavBar(),
     );
@@ -23,10 +23,10 @@ class MyApp extends StatelessWidget {
 }
 
 class BottomNavBar extends StatelessWidget {
-  BottomNavBar({super.key});
+  const BottomNavBar({super.key});
   List<Widget> _buildScreens() {
     return [
-      HomePage(),
+      const HomePage(),
       const CameraPage(),
       const VlogPage(),
       const ProfilePage()

@@ -23,16 +23,14 @@ class _CommentSheetState extends State<CommentSheet> {
       width: double.infinity,
       child: Column(
         children: [
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, bottom: 10),
-              child: Text(
-                widget.post.description,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
-              ),
+          const Padding(
+            padding: EdgeInsets.only(top: 20, bottom: 10),
+            child: Text(
+              'Comment',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 0.3,
           ),
           Column(
@@ -51,15 +49,17 @@ class _CommentSheetState extends State<CommentSheet> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(widget.post.image),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(widget.post.description),
-                  )
-                ]),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(widget.post.image),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(widget.post.description),
+                    )
+                  ],
+                ),
               ),
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trend/posts/data/models.dart';
 import 'package:trend/posts/data/remote_data.dart';
 import 'package:trend/widgets/comment_sheet.dart';
+import 'package:trend/widgets/info_sheet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,12 +34,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: (Text(
+        title: (const Text(
           'TREND',
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 5),
         )),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(5.0),
+          preferredSize: const Size.fromHeight(5.0),
           child: Container(
             height: 1,
             color: Colors.black.withOpacity(0.1),
@@ -47,12 +48,13 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Expanded(
         child: ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              return _MainPostContainer(
-                post: posts[index],
-              );
-            }),
+          itemCount: posts.length,
+          itemBuilder: (context, index) {
+            return _MainPostContainer(
+              post: posts[index],
+            );
+          },
+        ),
       ),
     );
   }
@@ -69,33 +71,37 @@ class _PostHeader extends StatefulWidget {
 class _PostHeaderState extends State<_PostHeader> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                widget.post.image,
-              ),
-              radius: 21,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(
+              widget.post.image,
             ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'ali',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
+            radius: 21,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'ali',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            Spacer(),
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.more_horiz,
-                  color: Colors.black,
-                ))
-          ],
-        ),
+          ),
+          const Spacer(),
+          IconButton(
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const InfoSheet();
+                    });
+              },
+              icon: const Icon(
+                Icons.more_horiz,
+                color: Colors.black,
+              ))
+        ],
       ),
     );
   }
@@ -134,7 +140,7 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
@@ -193,7 +199,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
       width: 400,
       child: Column(
         children: [
-          Row(
+          const Row(
             children: [
               CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -210,45 +216,43 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
               Text('Likes'),
             ],
           ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                    // color: Colors.red.shade400,
-                    ),
-                SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                  child: Container(
-                    child: RichText(
-                      maxLines: 3,
-                      text: TextSpan(
-                        text: '$_userName  ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: widget.post.description.isNotEmpty
-                                ? widget.post.description
-                                : 'No comment here',
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  // color: Colors.red.shade400,
+                  ),
+              const SizedBox(
+                width: 5,
+              ),
+              Expanded(
+                child: Container(
+                  child: RichText(
+                    maxLines: 3,
+                    text: TextSpan(
+                      text: '$_userName  ',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.black,
                       ),
+                      children: [
+                        TextSpan(
+                          text: widget.post.description.isNotEmpty
+                              ? widget.post.description
+                              : 'No comment here',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Row(
             children: [
@@ -268,7 +272,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
                       },
                     );
                   },
-                  child: Text('View all 18 comments'),
+                  child: const Text('View all 18 comments'),
                 ),
               ),
             ],
@@ -296,7 +300,7 @@ class __MainPostContainerState extends State<_MainPostContainer> {
         _Post(
           post: widget.post,
         ),
-        _PostInteractionButtons(),
+        const _PostInteractionButtons(),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: _PostsInteractions(

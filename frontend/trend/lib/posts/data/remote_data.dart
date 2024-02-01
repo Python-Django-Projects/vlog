@@ -5,8 +5,6 @@ import 'package:trend/posts/data/models.dart';
 Future<List<PostModel>> fetchPosts() async {
   final response =
       await http.get(Uri.parse('http://127.0.0.1:8000/post/list/'));
-  print(response.body);
-  print(response.statusCode);
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response, then parse the JSON.
     List<PostModel> posts = [];
