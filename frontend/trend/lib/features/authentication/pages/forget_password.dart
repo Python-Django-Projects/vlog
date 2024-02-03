@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trend/authentication/data/remote_data_source.dart';
+import 'package:trend/features/authentication/data/remote_data_source.dart';
 
 // ignore: must_be_immutable
 class ForgetPassword extends StatelessWidget {

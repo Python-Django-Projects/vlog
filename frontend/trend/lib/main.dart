@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:trend/home/camera.dart';
-import 'package:trend/home/home_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:trend/home/profile.dart';
-import 'package:trend/home/vlog.dart';
+import 'package:trend/features/home/camera.dart';
+import 'package:trend/features/home/home_page.dart';
+import 'package:trend/features/home/profile.dart';
+import 'package:trend/features/home/vlog.dart';
 
 void main() {
   runApp(const MyApp());

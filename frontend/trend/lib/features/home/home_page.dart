@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:trend/posts/data/models.dart';
-import 'package:trend/posts/data/remote_data.dart';
-import 'package:trend/widgets/comment_sheet.dart';
-import 'package:trend/widgets/info_sheet.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:trend/features/posts/data/models.dart';
+import 'package:trend/features/posts/data/remote_data.dart';
+import 'package:trend/features/widgets/comment_sheet.dart';
+import 'package:trend/features/widgets/info_sheet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -140,12 +141,16 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             children: [
-              Icon(Icons.favorite),
+              SvgPicture.asset(
+                "assets/heart.svg",
+                color: Colors.black,
+                height: 22,
+              ),
               SizedBox(
                 width: 5,
               ),
@@ -154,7 +159,11 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
           ),
           Row(
             children: [
-              Icon(Icons.comment),
+              SvgPicture.asset(
+                "assets/comment.svg",
+                color: Colors.black,
+                height: 22.5,
+              ),
               SizedBox(
                 width: 5,
               ),
@@ -163,7 +172,11 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
           ),
           Row(
             children: [
-              Icon(Icons.share),
+              SvgPicture.asset(
+                "assets/share.svg",
+                color: Colors.black,
+                height: 21,
+              ),
               SizedBox(
                 width: 5,
               ),

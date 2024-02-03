@@ -18,7 +18,7 @@ class _InfoSheetState extends State<InfoSheet> {
             vertical: 30.0), // Adjust vertical padding as needed
         child: Container(
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 234, 234, 234),
+            color: const Color.fromARGB(255, 234, 234, 234),
             borderRadius:
                 BorderRadius.circular(16.0), // Adjust the radius as needed
           ),

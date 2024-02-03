@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:trend/authentication/data/remote_data_source.dart';
-import 'package:trend/authentication/pages/forget_password.dart';
-import 'package:trend/authentication/pages/register.dart';
-import 'package:trend/home/home_page.dart';
+import 'package:trend/features/authentication/data/remote_data_source.dart';
+import 'package:trend/features/authentication/pages/forget_password.dart';
+import 'package:trend/features/authentication/pages/register.dart';
+import 'package:trend/features/home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();

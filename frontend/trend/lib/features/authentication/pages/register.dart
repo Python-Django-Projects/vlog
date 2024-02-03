@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trend/authentication/data/remote_data_source.dart';
-import 'package:trend/authentication/pages/login.dart';
+import 'package:trend/features/authentication/data/remote_data_source.dart';
+import 'package:trend/features/authentication/pages/login.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:trend/posts/data/models.dart';
+import 'package:trend/features/posts/data/models.dart';
 
 Future<List<PostModel>> fetchPosts() async {
   final response =

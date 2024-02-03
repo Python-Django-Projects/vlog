@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trend/posts/data/models.dart';
+import 'package:trend/features/posts/data/models.dart';
 
 class CommentSheet extends StatefulWidget {
   const CommentSheet(
