@@ -10,7 +10,6 @@ void createAccount(String email, username, password, password2) async {
       "password2": password2,
     },
   );
-  print(response.statusCode);
   if (response.statusCode == 201) {
     print("Created account");
   } else {

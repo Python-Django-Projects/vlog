@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart';
 import 'package:trend/features/posts/data/models.dart';
 import 'package:trend/features/posts/data/remote_data.dart';
 import 'package:trend/features/widgets/comment_sheet.dart';
@@ -82,11 +83,11 @@ class _PostHeaderState extends State<_PostHeader> {
             ),
             radius: 21,
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text(
-              'ali',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              widget.post.author.toString(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
           const Spacer(),
