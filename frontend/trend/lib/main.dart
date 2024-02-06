@@ -49,7 +49,7 @@ class BottomNavBar extends StatelessWidget {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.play_arrow),
-        title: "_",
+        title: "",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
