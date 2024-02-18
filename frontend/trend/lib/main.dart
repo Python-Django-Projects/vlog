@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:trend/features/home/camera.dart';
+import 'package:trend/features/home/camera/camera_page.dart';
 import 'package:trend/features/home/home_page.dart';
 import 'package:trend/features/home/profile.dart';
 import 'package:trend/features/home/vlog.dart';
@@ -64,12 +64,12 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PersistentTabController _controller;
+    PersistentTabController controller;
 
-    _controller = PersistentTabController(initialIndex: 0);
+    controller = PersistentTabController(initialIndex: 0);
     return PersistentTabView(
       context,
-      controller: _controller,
+      controller: controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
@@ -80,7 +80,7 @@ class BottomNavBar extends StatelessWidget {
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows:
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-      decoration: NavBarDecoration(
+      decoration: const NavBarDecoration(
         // borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,
       ),

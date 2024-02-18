@@ -50,5 +50,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>need permission to camrea to take picture to add post</string>
 </dict>
 </plist>

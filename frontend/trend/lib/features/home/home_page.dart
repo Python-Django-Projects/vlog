@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart';
 import 'package:trend/features/posts/data/models.dart';
 import 'package:trend/features/posts/data/remote_data.dart';
 import 'package:trend/features/widgets/comment_sheet.dart';
@@ -16,6 +15,7 @@ class HomePage extends StatefulWidget {
 // no code framework
 class _HomePageState extends State<HomePage> {
   List<PostModel> posts = [];
+  bool isLoading = false;
 
   ///2
   @override
@@ -26,9 +26,13 @@ class _HomePageState extends State<HomePage> {
 
 //1
   void displayPosts() async {
+    setState(() {
+      isLoading = true;
+    });
     final List<PostModel> posts = await fetchPosts();
     setState(() {
       this.posts = posts;
+      isLoading = false;
     });
   }
 
@@ -48,16 +52,18 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Expanded(
-        child: ListView.builder(
-          itemCount: posts.length,
-          itemBuilder: (context, index) {
-            return _MainPostContainer(
-              post: posts[index],
-            );
-          },
-        ),
-      ),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: posts.length,
+              itemBuilder: (context, index) {
+                return _MainPostContainer(
+                  post: posts[index],
+                );
+              },
+            ),
     );
   }
 }
@@ -119,7 +125,7 @@ class _Post extends StatefulWidget {
 class __PostState extends State<_Post> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Image.network(
         widget.post.image,
@@ -140,7 +146,7 @@ class _PostInteractionButtons extends StatefulWidget {
 class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -152,10 +158,10 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
                 color: Colors.black,
                 height: 22,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
-              Text('like'),
+              const Text('like'),
             ],
           ),
           Row(
@@ -165,10 +171,10 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
                 color: Colors.black,
                 height: 22.5,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
-              Text('Comment'),
+              const Text('Comment'),
             ],
           ),
           Row(
@@ -178,11 +184,11 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
                 color: Colors.black,
                 height: 21,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
-              Text('Share'),
-              Divider(
+              const Text('Share'),
+              const Divider(
                 height: 1,
                 color: Colors.red,
               ),
@@ -209,7 +215,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
   final String _userName = 'ali';
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 400,
       child: Column(
         children: [
@@ -307,21 +313,20 @@ class _MainPostContainer extends StatefulWidget {
 class __MainPostContainerState extends State<_MainPostContainer> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [
-        _PostHeader(post: widget.post),
-        _Post(
-          post: widget.post,
-        ),
-        const _PostInteractionButtons(),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: _PostsInteractions(
-            post: widget.post,
-          ),
-        ),
-      ],
-    ));
+    return Column(
+          children: [
+    _PostHeader(post: widget.post),
+    _Post(
+      post: widget.post,
+    ),
+    const _PostInteractionButtons(),
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: _PostsInteractions(
+        post: widget.post,
+      ),
+    ),
+          ],
+        );
   }
 }
