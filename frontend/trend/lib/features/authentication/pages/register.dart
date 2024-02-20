@@ -63,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                // SizedBox(height: 20),
                 Container(
                   height: 50, // Set the desired height here
                   child: TextField(
@@ -123,7 +123,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      primary: Colors.blue, // Set the desired color here
+                      backgroundColor:
+                          Colors.blue, // Set the desired color here
                     ),
                     child: const Text(
                       'Register',
@@ -171,8 +172,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 240, 240, 240),
-                      onPrimary: Colors.black,
+                      foregroundColor: Colors.black,
+                      backgroundColor: Color.fromARGB(255, 240, 240, 240),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

@@ -39,7 +39,7 @@ class ForgetPassword extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  primary: Colors.blue, // Set the desired color here
+                  backgroundColor: Colors.blue, // Set the desired color here
                 ),
                 child: const Text(
                   'Send Password',
