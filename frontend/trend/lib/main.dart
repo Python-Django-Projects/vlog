@@ -11,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,147 +22,99 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({super.key});
+class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({Key? key}) : super(key: key);
+
+  @override
+  _BottomNavBarState createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  int _selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return PersistentTabView(
+      context,
+      controller: PersistentTabController(initialIndex: 0),
+      screens: _buildScreens(),
+      items: _navBarsItems(),
+      confineInSafeArea: true,
+      backgroundColor: _selectedIndex == 2 ? Colors.black : Colors.white,
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
+      hideNavigationBarWhenKeyboardShows: true,
+      decoration: const NavBarDecoration(
+        colorBehindNavBar: Colors.white,
+      ),
+      popAllScreensOnTapOfSelectedTab: true,
+      popActionScreens: PopActionScreensType.all,
+      itemAnimationProperties: const ItemAnimationProperties(
+        duration: Duration(milliseconds: 200),
+        curve: Curves.ease,
+      ),
+      screenTransitionAnimation: const ScreenTransitionAnimation(
+        animateTabTransition: true,
+        curve: Curves.ease,
+        duration: Duration(milliseconds: 200),
+      ),
+      navBarStyle: NavBarStyle.style2,
+      onItemSelected: (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+    );
+  }
+
   List<Widget> _buildScreens() {
-    return [
-      const HomePage(),
-      const CameraPage(),
-      const VlogPage(),
-      const ProfilePage()
+    return const [
+      HomePage(),
+      CameraPage(),
+      VlogPage(),
+      ProfilePage(),
     ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.home),
-        title: "_",
+        icon: Icon(
+          CupertinoIcons.home,
+          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+        ),
+        title: " ",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.camera),
-        title: "_",
+        icon: Icon(
+          CupertinoIcons.camera,
+          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+        ),
+        title: " ",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.play_arrow),
-        title: "",
+        icon: Icon(
+          CupertinoIcons.play_arrow,
+          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+        ),
+        title: " ",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.profile_circled),
-        title: "_",
+        icon: Icon(
+          CupertinoIcons.profile_circled,
+          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+        ),
+        title: " ",
         activeColorPrimary: Colors.black,
         inactiveColorPrimary: Colors.black,
       ),
     ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    PersistentTabController controller;
-
-    controller = PersistentTabController(initialIndex: 0);
-    return PersistentTabView(
-      context,
-      controller: controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
-      confineInSafeArea: true,
-      backgroundColor: Colors.white, // Default is Colors.white.
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset:
-          true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
-      hideNavigationBarWhenKeyboardShows:
-          true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-      decoration: const NavBarDecoration(
-        // borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
-      ),
-      popAllScreensOnTapOfSelectedTab: true,
-      popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: const ItemAnimationProperties(
-        // Navigation Bar's items animation properties.
-        duration: Duration(milliseconds: 200),
-        curve: Curves.ease,
-      ),
-      screenTransitionAnimation: const ScreenTransitionAnimation(
-        // Screen transition animation on change of selected tab.
-        animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 200),
-      ),
-      navBarStyle:
-          NavBarStyle.style2, // Choose the nav bar style with this property.
-    );
-  }
-}
-
-class Screen1 extends StatelessWidget {
-  const Screen1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Screen 1',
-          style: TextStyle(fontSize: 30),
-        ),
-      ),
-    );
-  }
-}
-
-class Screen2 extends StatelessWidget {
-  const Screen2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Screen 1',
-          style: TextStyle(fontSize: 30),
-        ),
-      ),
-    );
-  }
-}
-
-class Screen3 extends StatelessWidget {
-  const Screen3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Screen 1',
-          style: TextStyle(fontSize: 30),
-        ),
-      ),
-    );
-  }
-}
-
-class Screen4 extends StatelessWidget {
-  const Screen4({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Screen 1',
-          style: TextStyle(fontSize: 30),
-        ),
-      ),
-    );
   }
 }
