@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trend/features/widgets/vlog_side_action_bar.dart';
 
 class VlogPage extends StatefulWidget {
   const VlogPage({Key? key}) : super(key: key);
@@ -8,33 +9,60 @@ class VlogPage extends StatefulWidget {
 }
 
 class _VlogPageState extends State<VlogPage> {
-  final _controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Expanded(
-        child: Container(
-          child: Center(
-            child: PageView(
-              controller: _controller,
-              scrollDirection: Axis.vertical,
-              children: [
-                Center(child: Text('page 1')),
-                Center(child: Text('page 2')),
-                Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.network(
-                        "https://images.unsplash.com/photo-1621155346337-1d19476ba7d6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGltYWdlfGVufDB8fDB8fHww",
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          'Vlog',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white),
         ),
+        centerTitle: false,
+      ),
+      body: PageView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    "https://media.istockphoto.com/id/852138778/photo/father-and-son.jpg?s=612x612&w=0&k=20&c=ACPVDoEzNTP1Mf34KvdPCXzTCzDM_CwKFNPVtgrK53w=",
+                  ),
+                  fit: BoxFit.fill),
+            ),
+            child: Center(
+              child: Stack(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Flexible(
+                            flex: 14,
+                            child: Container(
+                              height: 100,
+                              color: Colors.yellow,
+                            ),
+                          ),
+                          Flexible(
+                            flex: 2,
+                            child: VlogSideAction(),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

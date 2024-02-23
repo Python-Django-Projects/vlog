@@ -55,17 +55,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                            color: Colors
-                                .blue), // Set the desired border color here
+                        borderSide: const BorderSide(color: Colors.blue),
                       ),
                       labelText: 'username',
                     ),
                   ),
                 ),
-                // SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
-                  height: 50, // Set the desired height here
+                  height: 50,
                   child: TextField(
                     controller: passwordController,
                     decoration: InputDecoration(
