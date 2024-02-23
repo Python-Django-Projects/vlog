@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trend/features/widgets/vlog_details.dart';
 import 'package:trend/features/widgets/vlog_side_action_bar.dart';
 
 class VlogPage extends StatefulWidget {
@@ -34,7 +35,7 @@ class _VlogPageState extends State<VlogPage> {
                   ),
                   fit: BoxFit.fill),
             ),
-            child: Center(
+            child: const Center(
               child: Stack(
                 children: [
                   Column(
@@ -43,13 +44,7 @@ class _VlogPageState extends State<VlogPage> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Flexible(
-                            flex: 14,
-                            child: Container(
-                              height: 100,
-                              color: Colors.yellow,
-                            ),
-                          ),
+                          Flexible(flex: 14, child: VlogDetails()),
                           Flexible(
                             flex: 2,
                             child: VlogSideAction(),
