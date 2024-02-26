@@ -114,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -124,6 +124,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: 130,
                   child: ElevatedButton(
                     style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       backgroundColor:
                           MaterialStateProperty.all<Color?>(Colors.blue),
                     ),
@@ -138,6 +142,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: 130,
                   child: ElevatedButton(
                     style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
                       backgroundColor:
                           MaterialStateProperty.all<Color?>(Colors.blue),
                     ),
