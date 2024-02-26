@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BottomNavBar(),
+      theme: ThemeData(fontFamily: "Poppins"),
+      home: const BottomNavBar(),
     );
   }
 }
@@ -82,7 +83,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(
           CupertinoIcons.home,
-          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+          color: _selectedIndex == 2
+              ? Colors.white
+              : _selectedIndex == 0
+                  ? Colors.black
+                  : Colors.black.withOpacity(.9),
         ),
         title: " ",
         activeColorPrimary: Colors.black,
@@ -91,7 +96,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(
           CupertinoIcons.camera,
-          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+          color: _selectedIndex == 2
+              ? Colors.white
+              : _selectedIndex == 1
+                  ? Colors.black
+                  : Colors.black.withOpacity(.9),
         ),
         title: " ",
         activeColorPrimary: Colors.black,
@@ -100,7 +109,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(
           CupertinoIcons.play_arrow,
-          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+          color: _selectedIndex == 2
+              ? Colors.white
+              : _selectedIndex == 2
+                  ? Colors.black
+                  : Colors.black.withOpacity(.9),
         ),
         title: " ",
         activeColorPrimary: Colors.black,
@@ -109,7 +122,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(
           CupertinoIcons.profile_circled,
-          color: _selectedIndex == 2 ? Colors.white : Colors.black,
+          color: _selectedIndex == 2
+              ? Colors.white
+              : _selectedIndex == 3
+                  ? Colors.black
+                  : Colors.black.withOpacity(.9),
         ),
         title: " ",
         activeColorPrimary: Colors.black,

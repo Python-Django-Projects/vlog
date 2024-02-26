@@ -34,7 +34,7 @@ class _InfoSheetState extends State<InfoSheet> {
                 );
               } else {
                 // Return a regular Divider
-                return Divider(
+                return const Divider(
                   color: Color.fromARGB(255, 182, 182, 182),
                   thickness: 0.2,
                 );
@@ -44,13 +44,13 @@ class _InfoSheetState extends State<InfoSheet> {
               return Padding(
                 padding: EdgeInsets.only(
                     left: 15,
-                    top: (index == 0) ? 20 : 10,
+                    top: (index == 0) ? 20 : 5,
                     bottom: (index == 4) ? 20 : 10),
                 child: Text(
                   getStaticText(index), // Use static strings directly
                   style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
                     color: (index == 4) ? Colors.red : null,
                   ),
                 ),

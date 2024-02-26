@@ -26,8 +26,8 @@ class _CommentSheetState extends State<CommentSheet> {
           const Padding(
             padding: EdgeInsets.only(top: 20, bottom: 10),
             child: Text(
-              'Comment',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+              'Comments',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
           ),
           const Divider(

@@ -40,6 +40,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        titleSpacing: 8,
         title: (const Text(
           'TREND',
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 5),
@@ -93,7 +95,7 @@ class _PostHeaderState extends State<_PostHeader> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               widget.post.author.toString(),
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
           const Spacer(),
@@ -147,7 +149,7 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 70,
+      height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -156,12 +158,12 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
               SvgPicture.asset(
                 "assets/heart.svg",
                 color: Colors.black,
-                height: 22,
+                height: 21,
               ),
               const SizedBox(
                 width: 5,
               ),
-              const Text('like'),
+              const Text('Like'),
             ],
           ),
           Row(
@@ -182,7 +184,7 @@ class __PostInteractionButtonsState extends State<_PostInteractionButtons> {
               SvgPicture.asset(
                 "assets/share.svg",
                 color: Colors.black,
-                height: 21,
+                height: 20,
               ),
               const SizedBox(
                 width: 5,
@@ -224,26 +226,38 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
               CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNNl92qNwzhP_M2qyyq78DG2GPMokRD1WfmA&usqp=CAU'),
-                radius: 13,
+                radius: 11,
               ),
               SizedBox(
                 width: 5,
               ),
-              Text('422'),
+              Text(
+                '422',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
               SizedBox(
                 width: 5,
               ),
-              Text('Likes'),
+              Text(
+                'likes',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
             ],
+          ),
+          const SizedBox(
+            height: 3,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  // color: Colors.red.shade400,
-                  ),
               const SizedBox(
-                width: 5,
+                width: 2,
               ),
               Expanded(
                 child: Container(
@@ -253,7 +267,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
                       text: '$_userName  ',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 15,
                         color: Colors.black,
                       ),
                       children: [
@@ -263,7 +277,7 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
                               : 'No comment here',
                           style: const TextStyle(
                             fontWeight: FontWeight.normal,
-                            fontSize: 16,
+                            fontSize: 15,
                             color: Colors.black,
                           ),
                         ),
@@ -274,10 +288,13 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 3,
+          ),
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 5.0),
+                padding: const EdgeInsets.only(left: 2.0),
                 child: GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
@@ -292,7 +309,13 @@ class __PostsInteractionsState extends State<_PostsInteractions> {
                       },
                     );
                   },
-                  child: const Text('View all 18 comments'),
+                  child: const Text(
+                    'View all 18 comments',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 13,
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -314,19 +337,20 @@ class __MainPostContainerState extends State<_MainPostContainer> {
   @override
   Widget build(BuildContext context) {
     return Column(
-          children: [
-    _PostHeader(post: widget.post),
-    _Post(
-      post: widget.post,
-    ),
-    const _PostInteractionButtons(),
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: _PostsInteractions(
-        post: widget.post,
-      ),
-    ),
-          ],
-        );
+      children: [
+        _PostHeader(post: widget.post),
+        _Post(
+          post: widget.post,
+        ),
+        const _PostInteractionButtons(),
+        const Divider(height: .05, thickness: .3),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _PostsInteractions(
+            post: widget.post,
+          ),
+        ),
+      ],
+    );
   }
 }

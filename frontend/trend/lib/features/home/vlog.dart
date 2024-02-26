@@ -33,7 +33,7 @@ class _VlogPageState extends State<VlogPage> {
                   image: NetworkImage(
                     "https://media.istockphoto.com/id/852138778/photo/father-and-son.jpg?s=612x612&w=0&k=20&c=ACPVDoEzNTP1Mf34KvdPCXzTCzDM_CwKFNPVtgrK53w=",
                   ),
-                  fit: BoxFit.fill),
+                  fit: BoxFit.cover),
             ),
             child: const Center(
               child: Stack(
