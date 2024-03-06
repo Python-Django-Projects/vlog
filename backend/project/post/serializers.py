@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Image, Video, Follow, Like, Dislike
+from .models import Post, Image, Video, Follow, Like, Unlike, Comment
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,23 +21,23 @@ class LikeSerializer(serializers.ModelSerializer):
         model = Like
         fields = '__all__'
 
-class DislikeSerializer(serializers.ModelSerializer):
+class UnlikeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Dislike
+        model = Unlike
+        fields = '__all__'
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
         fields = '__all__'
 
 class PostSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True, read_only=True)
     videos = VideoSerializer(many=True, read_only=True)
-    total_likes = serializers.SerializerMethodField()
-    total_dislikes = serializers.SerializerMethodField()
+    likes = LikeSerializer(many=True, read_only=True)
+    unlikes = UnlikeSerializer(many=True, read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
         fields = '__all__'
-
-    def get_total_likes(self, obj):
-        return obj.total_likes()
-
-    def get_total_dislikes(self, obj):
-        return obj.total_dislikes()
