@@ -1,0 +1,21 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+import 'package:trend/core/resources/assets_manager.dart';
+
+
+class LogoLoader extends StatelessWidget {
+  const LogoLoader({super.key, this.size});
+  final double? size;
+  @override
+  Widget build(BuildContext context) {
+    return Pulse(
+      key: UniqueKey(),
+      infinite: true,
+      child: SizedBox(
+        height: size ?? 45,
+        width: size ?? 45,
+        child: Image.asset(ImgAssets.logoIconDark),
+      ),
+    );
+  }
+}

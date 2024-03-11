@@ -33,18 +33,18 @@ Future<void> addPost(
     'comment': '',
   });
   request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));
-  try {
-    http.StreamedResponse response = await request.send();
+  // try {
+  //   http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 201) {
-      Fluttertoast.showToast(msg: "Post added successfully");
-      Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => BottomNavBar()), (route) => false);
-    } else {
-      Fluttertoast.showToast(
-          msg: "Unable to add post, please try again later.");
-    }
-  } catch (e) {
-    Fluttertoast.showToast(msg: "Unable to add post, please try again later.");
-  }
+  //   if (response.statusCode == 201) {
+  //     Fluttertoast.showToast(msg: "Post added successfully");
+  //     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+  //         MaterialPageRoute(builder: (_) => BottomNavBar()), (route) => false);
+  //   } else {
+  //     Fluttertoast.showToast(
+  //         msg: "Unable to add post, please try again later.");
+  //   }
+  // } catch (e) {
+  //   Fluttertoast.showToast(msg: "Unable to add post, please try again later.");
+  // }
 }
