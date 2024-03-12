@@ -42,7 +42,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # )
     # phone = models.CharField(validators=[phone_regex], max_length=12, verbose_name='Mobile phone', unique=True, default='8 xxx xxx xx xx')
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=20, unique=True)
+    username = models.CharField(max_length=30, unique=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     is_active = models.BooleanField(default=True)

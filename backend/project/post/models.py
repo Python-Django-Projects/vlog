@@ -6,15 +6,18 @@ class Post(models.Model):
     description = models.CharField(max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
 
 
 class Image(models.Model):
+    id = models.AutoField(primary_key=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
     post_image = models.ImageField(upload_to='images/', blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Video(models.Model):
+    id = models.AutoField(primary_key=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='videos')
     post_video = models.FileField(upload_to='post_videos/')
     created_at = models.DateTimeField(auto_now_add=True)
