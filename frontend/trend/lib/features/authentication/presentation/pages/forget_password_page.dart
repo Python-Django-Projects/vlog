@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:trend/features/authentication/data/data_source/remote_data_source.dart';
 
 // ignore: must_be_immutable
 class ForgetPassword extends StatelessWidget {
@@ -33,7 +32,7 @@ class ForgetPassword extends StatelessWidget {
               // Set the desired width here
               ElevatedButton(
                 onPressed: () {
-                  resetPassword(emailController.text);
+                  // resetPassword(emailController.text);
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-import '../../posts/data/remote_data.dart';
 
 class TakenImagePreviewPage extends StatefulWidget {
   final XFile file;
@@ -23,10 +22,10 @@ class _TakenImagePreviewPageState extends State<TakenImagePreviewPage> {
     setState(() {
       _isLoading = true;
     });
-    await addPost(
-        File(widget.file.path),
-        _descriptionController.text.isEmpty ? "" : _descriptionController.text,
-        context);
+    // await addPost(
+    //     File(widget.file.path),
+    //     _descriptionController.text.isEmpty ? "" : _descriptionController.text,
+    //     context);
 
     setState(() {
       _isLoading = false;

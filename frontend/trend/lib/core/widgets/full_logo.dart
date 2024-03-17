@@ -3,12 +3,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:trend/core/resources/assets_manager.dart';
 
 class FullLogo extends StatelessWidget {
-  const FullLogo({super.key});
+  final double? size;
+  const FullLogo({
+    Key? key,
+    this.size,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      ImgAssets.logoDarkSvg,
+    return SizedBox(
+      height: size,
+      child: SvgPicture.asset(
+        ImgAssets.logoDarkSvg,
+        height: size,
+      ),
     );
   }
 }

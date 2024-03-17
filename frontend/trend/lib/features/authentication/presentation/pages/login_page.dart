@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trend/config/locale/app_localizations.dart';
+import 'package:trend/core/widgets/outline_app_button.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/toast_utils.dart';
 import '../../../../core/utils/validation.dart';
@@ -25,120 +27,116 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is AuthErrorState) {
-          ToastUtils(context).showCustomToast(
-            message: state.message,
-            iconData: Icons.error_outline,
+    return SafeArea(
+      top: true,
+      bottom: true,
+      child: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthErrorState) {
+            ToastUtils(context).showCustomToast(
+              message: state.message,
+              iconData: Icons.error_outline,
+            );
+          } else if (state is AuthLoadedState) {
+            GoRouter.of(context).go(Routes.initialPage);
+          }
+        },
+        builder: (context, state) {
+          return OverlayLoadingPage(
+            isLoading: state is AuthLoadingState,
+            child: Scaffold(
+              body: _buildLoginForm(),
+              bottomNavigationBar: Padding(
+                padding: EdgeInsets.all(30.sp),
+                child: OutlineAppButton(
+                  text: "Create new account".hardcoded,
+                  onTap: () {
+                    GoRouter.of(context).push(Routes.signUp);
+                  },
+                ),
+              ),
+            ),
           );
-        } else if (state is AuthLoadedState) {
-          GoRouter.of(context).go(Routes.initialPage);
-        }
-      },
-      builder: (context, state) {
-        return OverlayLoadingPage(
-          isLoading: state is AuthLoadingState,
-          child: Scaffold(
-            body: _buildLoginForm(),
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 
   Widget _buildLoginForm() {
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(
-                height: 100,
-                child: FullLogo(),
-              ),
-              const SizedBox(height: 40),
-              CustomTextFormField(
-                labelText: "E-mail".hardcoded,
-                prefixIcon: const Icon(Icons.email),
-                onChange: (value) {
-                  _email = value.trim();
-                },
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) => Validation.validateEmail(_email, context),
-                textInputAction: TextInputAction.next,
-              ),
-              const SizedBox(height: 20),
-              CustomTextFormField(
-                labelText: "Password".hardcoded,
-                prefixIcon: const Icon(Icons.lock),
-                suffixIcon: IconButton(
-                  onPressed: () => setState(() {
-                    _obscurePassword = !_obscurePassword;
-                  }),
-                  icon: Icon(
-                    _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                  ),
-                ),
-                obscureText: _obscurePassword,
-                onChange: (value) {
-                  _password = value.trim();
-                },
-                validator: (value) =>
-                    Validation.validatePassword(_password, context),
-                onFieldSubmitted: (value) {
-                  _onLogin();
-                },
-              ),
-              const SizedBox(height: 30),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: Size(MediaQuery.sizeOf(context).width, 45)),
-                  onPressed: _onLogin,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text("Login".hardcoded),
-                  ),
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(30.sp),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 100.sp),
+            SizedBox(height: 76.sp, child: const FullLogo()),
+            SizedBox(height: 80.sp),
+            CustomTextFormField(
+              labelText: "E-mail".hardcoded,
+              onChange: (value) {
+                _email = value.trim();
+              },
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) => Validation.validateEmail(_email, context),
+              textInputAction: TextInputAction.next,
+            ),
+            SizedBox(height: 20.sp),
+            CustomTextFormField(
+              labelText: "Password".hardcoded,
+              suffixIcon: IconButton(
+                onPressed: () => setState(() {
+                  _obscurePassword = !_obscurePassword;
+                }),
+                icon: Icon(
+                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                  color: Theme.of(context).hintColor,
                 ),
               ),
-              const SizedBox(height: 10),
-              // TextButton(
-              //     onPressed: () {
-              //       Navigator.push(
-              //         context,
-              //         MaterialPageRoute(
-              //           builder: (context) => ForgetPassword(),
-              //         ),
-              //       );
-              //     },
-              //     child: Text(
-              //       'Forget password?',
-              //       style: Theme.of(context).textTheme.bodyMedium,
-              //     )),
-              TextButton(
-                child: RichText(
-                    text: TextSpan(
-                        text: 'Don\'t have an account?',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        children: [
-                      TextSpan(
-                        text: " Sign Up".hardcoded,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: Theme.of(context).primaryColor),
-                      )
-                    ])),
+              obscureText: _obscurePassword,
+              onChange: (value) {
+                _password = value.trim();
+              },
+              validator: (value) =>
+                  Validation.validatePassword(_password, context),
+              onFieldSubmitted: (value) {
+                _onLogin();
+              },
+            ),
+            SizedBox(height: 20.sp),
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: Size(MediaQuery.sizeOf(context).width, 42.sp)),
+                onPressed: _onLogin,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                  child: Text(
+                    "Log in".hardcoded,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 12.sp),
+            TextButton(
                 onPressed: () {
-                  GoRouter.of(context).push(Routes.signUp);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => ForgetPassword(),
+                  //   ),
+                  // );
                 },
-              ),
-            ],
-          ),
+                child: Text(
+                  'Forget password?',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w500, fontSize: 14.sp),
+                )),
+          ],
         ),
       ),
     );

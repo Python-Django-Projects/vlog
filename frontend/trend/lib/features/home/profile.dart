@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trend/features/posts/data/models.dart';
-import 'package:trend/features/posts/data/remote_data.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -21,17 +20,17 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void displayPosts() async {
-    final List<PostModel> posts = await fetchPosts();
-    setState(() {
-      this.posts = posts;
-    });
+    // final List<PostModel> posts = await fetchPosts();
+    // setState(() {
+    //   this.posts = posts;
+    // });
   }
 
   void displayUserName() async {
-    final List<PostModel> posts = await fetchPosts();
-    setState(() {
-      this.posts = posts;
-    });
+    // final List<PostModel> posts = await fetchPosts();
+    // setState(() {
+    //   this.posts = posts;
+    // });
   }
 
   @override

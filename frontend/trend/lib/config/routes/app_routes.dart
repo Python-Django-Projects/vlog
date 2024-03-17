@@ -11,6 +11,7 @@ import '../../features/authentication/presentation/pages/register_page.dart';
 import '../../features/home/presentation/pages/home_initial_page.dart';
 import '../../features/home/presentation/pages/home_navigator.dart';
 import '../../features/posts/presentation/posts_page.dart';
+import '../../features/vlogs/presentation/pages/vlogs_page.dart';
 import '../../injection_container.dart';
 import '../locale/app_localizations.dart';
 
@@ -19,7 +20,7 @@ class Routes {
   static String posts = '/posts';
   static String explore = '/explore';
   static String camera = '/camera';
-  static String vlog = 'vlog';
+  static String vlog = '/vlog';
   static String profile = '/profile';
   static String login = '/login';
   static String signUp = '/login/signUp';
@@ -66,6 +67,12 @@ final router = GoRouter(
           routes: const [],
         ),
         GoRoute(
+          path: Routes.vlog,
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: VlogsPage(),
+          ),
+        ),
+        GoRoute(
           path: Routes.explore,
           pageBuilder: (context, state) => const NoTransitionPage(
             child: ExplorePage(),
@@ -108,7 +115,7 @@ final router = GoRouter(
   ],
   redirect: (context, state) {
     if (!state.uri.toString().startsWith('/login') && !_sharedPref.isLoggedIn) {
-    return '/login';
+      return '/login';
     }
 
     return null;

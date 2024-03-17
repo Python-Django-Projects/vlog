@@ -55,7 +55,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return Future.value(unit);
     } else if (response.statusCode == 400) {
       final errorMessage = generateResponseErrorMessage(response.data);
-      print(errorMessage);
       throw MessageException(message: errorMessage);
     } else {
       throw const ServerException();

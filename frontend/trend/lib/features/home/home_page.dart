@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trend/features/posts/data/models.dart';
-import 'package:trend/features/posts/data/remote_data.dart';
 import 'package:trend/features/widgets/comment_sheet.dart';
 import 'package:trend/features/widgets/info_sheet.dart';
 
@@ -26,14 +25,14 @@ class _HomePageState extends State<HomePage> {
 
 //1
   void displayPosts() async {
-    setState(() {
-      isLoading = true;
-    });
-    final List<PostModel> posts = await fetchPosts();
-    setState(() {
-      this.posts = posts;
-      isLoading = false;
-    });
+    // setState(() {
+    //   isLoading = true;
+    // });
+    // final List<PostModel> posts = await fetchPosts();
+    // setState(() {
+    //   this.posts = posts;
+    //   isLoading = false;
+    // });
   }
 
   @override

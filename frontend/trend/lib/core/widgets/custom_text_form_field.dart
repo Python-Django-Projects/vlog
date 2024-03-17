@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -30,6 +31,8 @@ class CustomTextFormField extends StatelessWidget {
     this.focusNode,
     this.style,
     this.suffix,
+    this.hintStyle,
+    this.labelStyle,
     this.textAlign = TextAlign.start,
     this.readOnly = false,
   }) : super(key: key);
@@ -61,6 +64,8 @@ class CustomTextFormField extends StatelessWidget {
   final InputDecoration? decoration;
   final FocusNode? focusNode;
   final TextStyle? style;
+  final TextStyle? hintStyle;
+  final TextStyle? labelStyle;
   final Widget? suffix;
 
   @override
@@ -70,6 +75,8 @@ class CustomTextFormField extends StatelessWidget {
       onChanged: onChange,
       decoration: decoration ??
           InputDecoration(
+              labelStyle: labelStyle,
+              hintStyle: hintStyle,
               labelText: labelText,
               hintText: hintText,
               prefixIcon: prefixIcon,
@@ -79,9 +86,9 @@ class CustomTextFormField extends StatelessWidget {
               suffixStyle: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.primary,
-                fontSize: 16,
+                fontSize: 16.sp,
               )),
-      style: style,
+      style: style ?? TextStyle(fontSize: 15.sp),
       obscureText: obscureText,
       validator: validator,
       controller: controller,
@@ -101,6 +108,7 @@ class CustomTextFormField extends StatelessWidget {
       mouseCursor: mouseCursor,
       onTapOutside: onTapOutside,
       textAlign: textAlign,
+      cursorColor: Theme.of(context).primaryColor,
     );
   }
 }

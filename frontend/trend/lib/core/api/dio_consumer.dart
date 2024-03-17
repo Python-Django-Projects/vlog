@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../injection_container.dart' as di;
 import '../error/exceptions.dart';
@@ -23,7 +24,14 @@ class DioConsumer implements ApiConsumer {
       };
     client.interceptors.add(di.sl<AppIntercepters>());
     if (kDebugMode) {
-      client.interceptors.add(di.sl<LogInterceptor>());
+      client.interceptors.add(PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: false,
+          error: true,
+          compact: true,
+          maxWidth: 90));
     }
   }
 
