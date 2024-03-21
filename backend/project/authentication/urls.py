@@ -3,15 +3,19 @@ from .views import (
     CustomUserList,
     CustomUserDetail,
     CustomUserRegister,
+    LoginView,
     PasswordResetRequestView,
 )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
-    TokenVerifyView
+    TokenVerifyView,
+    
 )
 
 urlpatterns = [
+    
+    path('login/', LoginView.as_view()),
     path('list/', CustomUserList.as_view()),
     path('list/<int:pk>/', CustomUserDetail.as_view()),
     path('register/', CustomUserRegister.as_view()),
