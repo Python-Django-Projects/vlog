@@ -47,6 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=30, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    image_profile = models.ImageField(upload_to='images/')
 
     objects = CustomUserManager()
 
@@ -76,3 +77,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         Your team
         """
         send_mail(mail_subject, message, 'admin@mywebsite.com', [self.email])
+# class Profile(models.Model):
+    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=False, null=False)
+    
