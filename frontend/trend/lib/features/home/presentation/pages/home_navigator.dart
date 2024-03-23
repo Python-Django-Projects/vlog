@@ -27,74 +27,74 @@ class _HomeNavigatorState extends State<HomeNavigator> {
     final isVlog = location.contains("vlog");
 
     final sharedPref = sl<SharedPref>();
-    return SafeArea(
-      top: true,
-      bottom: true,
-      child: WillPopScope(
-        onWillPop: () async {
-          if (location.startsWith(Routes.posts)) return true;
+    return WillPopScope(
+      onWillPop: () async {
+        if (location.startsWith(Routes.posts)) return true;
 
-          context.go(Routes.posts);
-          return false;
-        },
-        child: Scaffold(
-          extendBody: false,
-          bottomNavigationBar: Container(
-            decoration: BoxDecoration(
-              color: isVlog ? Colors.black : Colors.transparent,
-              // border: Border(
-              //     top: BorderSide(
-              //         color: Theme.of(context).highlightColor, width: .5.sp)),
-            ),
-            child: Card(
-              color: isVlog ? Colors.black : Colors.transparent,
-              elevation: 0.sp,
-              margin: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0),
-              ),
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 8.sp, horizontal: 14.sp),
-                child: GNav(
-                  backgroundColor: isVlog ? Colors.black : Colors.transparent,
-                  padding: EdgeInsets.symmetric(horizontal: 8.sp),
-                  tabBorderRadius: 20.sp,
-                  activeColor: Theme.of(context).textTheme.displayLarge?.color,
-                  color: Theme.of(context).hintColor,
-                  selectedIndex: _mapLocationToIndex(location),
-                  onTabChange: _onTabChanged,
-                  iconSize: 30.sp,
-                  tabs: [
-                    _buildTab(
-                        context: context,
-                        title: "Home".hardcoded,
-                        assetUrl: ImgAssets.homeIconSVG,
-                        route: Routes.posts),
-                    _buildTab(
-                        context: context,
-                        title: "Search".hardcoded,
-                        assetUrl: ImgAssets.searchIconSVG,
-                        route: Routes.explore),
-                    _buildTab(
-                        context: context,
-                        title: "Camera".hardcoded,
-                        assetUrl: ImgAssets.addIconSVG,
-                        route: Routes.camera),
-                    _buildTab(
-                        context: context,
-                        height: 25.sp,
-                        title: "Vlog".hardcoded,
-                        assetUrl: ImgAssets.videoIconSVG,
-                        route: Routes.vlog),
-                    _profileTab(context, location),
-                  ],
+        context.go(Routes.posts);
+        return false;
+      },
+      child: Scaffold(
+        extendBody: false,
+        bottomNavigationBar: location == Routes.camera
+            ? const SizedBox()
+            : Container(
+                decoration: BoxDecoration(
+                  color: isVlog ? Colors.black : Colors.transparent,
+                  // border: Border(
+                  //     top: BorderSide(
+                  //         color: Theme.of(context).highlightColor, width: .5.sp)),
+                ),
+                child: Card(
+                  color: isVlog ? Colors.black : Colors.transparent,
+                  elevation: 0.sp,
+                  margin: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.sp, horizontal: 14.sp),
+                    child: GNav(
+                      backgroundColor:
+                          isVlog ? Colors.black : Colors.transparent,
+                      padding: EdgeInsets.symmetric(horizontal: 8.sp),
+                      tabBorderRadius: 20.sp,
+                      activeColor:
+                          Theme.of(context).textTheme.displayLarge?.color,
+                      color: Theme.of(context).hintColor,
+                      selectedIndex: _mapLocationToIndex(location),
+                      onTabChange: _onTabChanged,
+                      iconSize: 30.sp,
+                      tabs: [
+                        _buildTab(
+                            context: context,
+                            title: "Home".hardcoded,
+                            assetUrl: ImgAssets.homeIconSVG,
+                            route: Routes.posts),
+                        _buildTab(
+                            context: context,
+                            title: "Search".hardcoded,
+                            assetUrl: ImgAssets.searchIconSVG,
+                            route: Routes.explore),
+                        _buildTab(
+                            context: context,
+                            title: "Camera".hardcoded,
+                            assetUrl: ImgAssets.addIconSVG,
+                            route: Routes.camera),
+                        _buildTab(
+                            context: context,
+                            height: 25.sp,
+                            title: "Vlog".hardcoded,
+                            assetUrl: ImgAssets.videoIconSVG,
+                            route: Routes.vlog),
+                        _profileTab(context, location),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          body: widget.child,
-        ),
+        body: widget.child,
       ),
     );
   }
@@ -122,7 +122,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
             )
           ],
         ),
-        route: Routes.vlog);
+        route: Routes.profile);
   }
 
   GButton _buildTab(

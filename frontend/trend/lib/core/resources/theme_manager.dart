@@ -80,6 +80,9 @@ ThemeData get appTheme => ThemeData(
     textTheme: TextTheme(
         bodySmall: const TextStyle(color: kGreyColor),
         bodyMedium: const TextStyle(color: kIconsLightColor),
+        bodyLarge: const TextStyle(color: kbuttonLight),
+        headlineSmall: const TextStyle(color: kLightGreyColor),
+        headlineLarge: const TextStyle(color: Colors.white),
         displayLarge: TextStyle(
             fontWeight: FontWeight.w400, fontSize: 18.sp, color: Colors.black),
         headlineMedium: TextStyle(
@@ -95,7 +98,7 @@ ThemeData get darkTheme => ThemeData.dark(useMaterial3: true).copyWith(
         brightness: Brightness.dark,
         onPrimary: Colors.white,
       ),
-      scaffoldBackgroundColor: const Color(0xff242424),
+      scaffoldBackgroundColor: const Color(0xff18191A),
       cardColor: const Color(0xff1b1b1b),
       cardTheme: CardTheme(
         color: const Color(0xff1b1b1b),
@@ -118,7 +121,7 @@ ThemeData get darkTheme => ThemeData.dark(useMaterial3: true).copyWith(
         ),
       ),
       appBarTheme: AppBarTheme(
-        color: const Color(0xff1b1b1b),
+        color: const Color(0xff18191A),
         iconTheme: IconThemeData(color: Colors.white.withOpacity(0.5)),
         actionsIconTheme: IconThemeData(color: Colors.white.withOpacity(0.5)),
         centerTitle: true,
@@ -134,8 +137,14 @@ ThemeData get darkTheme => ThemeData.dark(useMaterial3: true).copyWith(
 
       // text
       textTheme: TextTheme(
-        bodySmall: const TextStyle(color: kGreyColor),
-        bodyMedium: const TextStyle(color: kIconsDarkColor),
+        bodySmall: const TextStyle(color: kGreyColor, fontFamily: "Poppins"),
+        bodyMedium:
+            const TextStyle(color: kIconsDarkColor, fontFamily: "Poppins"),
+        bodyLarge: const TextStyle(color: kbuttonDark, fontFamily: "Poppins"),
+        headlineSmall:
+            const TextStyle(color: kDarkGreyColor, fontFamily: "Poppins"),
+        headlineLarge:
+            const TextStyle(color: kDarkBottomNavColor, fontFamily: "Poppins"),
         displayLarge: TextStyle(
             fontWeight: FontWeight.w400, fontSize: 18.sp, color: Colors.white),
         headlineMedium: TextStyle(

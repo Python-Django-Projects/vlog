@@ -23,10 +23,15 @@ class AppLocalizations {
       return MapEntry(key, value.toString());
     });
   }
+
   bool get isRTL => locale.toString() == 'ar';
 
   String? translate(String key) => _localizedStrings[key];
   bool get isEnLocale => locale.languageCode == 'en';
+}
+
+extension LocalizationsX on BuildContext {
+  bool get isRTL => AppLocalizations.of(this)!.isRTL;
 }
 
 extension StringX on String {

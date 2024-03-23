@@ -52,5 +52,7 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>need permission to camrea to take picture to add post</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>need permission to microphone to take record video</string>
 </dict>
 </plist>

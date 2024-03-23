@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trend/features/home/camera/camera_page.dart';
-import 'package:trend/features/posts/presentation/explore_page.dart';
-import 'package:trend/features/profile/presentation/profile_page.dart';
+import 'package:trend/features/posts/presentation/pages/explore_page.dart';
+import 'package:trend/features/posts/presentation/pages/taken_media_preview_page.dart';
+import 'package:trend/features/profile/presentation/pages/profile_page.dart';
+import 'package:trend/features/settings/presentation/pages/settings_page.dart';
 import '../../core/utils/shared_pref.dart';
 import '../../features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
 import '../../features/authentication/presentation/pages/login_page.dart';
 import '../../features/authentication/presentation/pages/register_page.dart';
 import '../../features/home/presentation/pages/home_initial_page.dart';
 import '../../features/home/presentation/pages/home_navigator.dart';
-import '../../features/posts/presentation/posts_page.dart';
+import '../../features/posts/presentation/pages/camera_page.dart';
+import '../../features/posts/presentation/pages/posts_page.dart';
 import '../../features/vlogs/presentation/pages/vlogs_page.dart';
 import '../../injection_container.dart';
 import '../locale/app_localizations.dart';
@@ -20,8 +22,12 @@ class Routes {
   static String posts = '/posts';
   static String explore = '/explore';
   static String camera = '/camera';
+  static String takenMediaPreview = '/camera/preview';
   static String vlog = '/vlog';
+
   static String profile = '/profile';
+  static String settings = '/profile/settings';
+
   static String login = '/login';
   static String signUp = '/login/signUp';
 }
@@ -83,18 +89,32 @@ final router = GoRouter(
           pageBuilder: (context, state) => const NoTransitionPage(
             child: CameraPage(),
           ),
-          routes: const [],
+          routes: [
+            GoRoute(
+                path: "preview",
+                pageBuilder: (context, state) => NoTransitionPage(
+                      child: TakenMediaPreviewPage(
+                        files: (state.extra as Map)["files"],
+                        mediaType: (state.extra as Map)["mediaType"],
+                      ),
+                    )),
+          ],
+        ),
+        GoRoute(
+          path: Routes.profile,
+          pageBuilder: (context, state) => const SlideTransitionPage(
+            child: ProfilePage(),
+          ),
+          routes: [
+            GoRoute(
+                path: "settings",
+                pageBuilder: (context, state) => const NoTransitionPage(
+                      child: SettingsPage(),
+                    ),
+                routes: const []),
+          ],
         ),
       ],
-    ),
-    GoRoute(
-      path: '/profile',
-      name: 'Profile',
-      parentNavigatorKey: _rootNavigatorKey,
-      pageBuilder: (context, state) => const SlideTransitionPage(
-        child: ProfilePage(),
-      ),
-      routes: const [],
     ),
     GoRoute(
         path: '/login',

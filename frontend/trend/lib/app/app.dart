@@ -6,7 +6,6 @@ import '../config/locale/app_localizations.dart';
 import '../config/locale/localization_cubit/localization_cubit.dart';
 import '../config/routes/app_routes.dart';
 import '../core/bloc/theme_cubit/theme_cubit.dart';
-
 import '../core/resources/theme_manager.dart';
 import '../injection_container.dart' as di;
 
@@ -35,8 +34,7 @@ class TrendApp extends StatelessWidget {
                       title: 'Trend',
                       theme: appTheme,
                       darkTheme: darkTheme,
-                      // themeMode: themeMode,
-                      themeMode: ThemeMode.light,
+                      themeMode: themeMode,
                       supportedLocales: const [
                         Locale('en'),
                         Locale('ar'),

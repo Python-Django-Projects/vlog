@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trend/core/widgets/full_logo.dart';
 
-import 'widgets/single_post_widgets/single_post_widget.dart';
+import '../widgets/single_post_widgets/single_post_widget.dart';
 
 class PostsPage extends StatelessWidget {
   const PostsPage({super.key});

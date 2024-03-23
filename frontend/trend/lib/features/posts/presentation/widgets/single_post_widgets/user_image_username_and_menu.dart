@@ -22,26 +22,21 @@ class _UserImageAndUsernameAndMenuState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 10.sp),
+      padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 12.sp),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              Container(
-                  padding: const EdgeInsets.all(1),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: GestureDetector(
-                    onTap: () async {},
-                    child: CustomCachedImageWidget(
-                      addBorder: true,
-                      size: 38.sp,
-                      imageUrl:
-                          "https://www.thefashionisto.com/wp-content/uploads/2021/03/Attractive-Man-Selfie-Sunglasses-Smiling.jpg",
-                    ),
-                  )),
+              GestureDetector(
+                onTap: () async {},
+                child: CustomCachedImageWidget(
+                  addBorder: true,
+                  size: 38.sp,
+                  imageUrl:
+                      "https://www.thefashionisto.com/wp-content/uploads/2021/03/Attractive-Man-Selfie-Sunglasses-Smiling.jpg",
+                ),
+              ),
               SizedBox(width: 10.sp),
               GestureDetector(
                 onTap: () async {},
@@ -55,21 +50,16 @@ class _UserImageAndUsernameAndMenuState
               ),
             ],
           ),
-          Row(
-            children: [
-              IconButton(
-                  padding: EdgeInsets.all(8.sp),
-                  onPressed: () => _showPostMenuModal(context),
-                  icon: SvgPicture.asset(
-                    ImgAssets.threeDotsIconSVG,
-                    width: 4.sp,
-                    height: 4.sp,
-                    colorFilter: ColorFilter.mode(
-                        Theme.of(context).textTheme.displayLarge!.color!,
-                        BlendMode.srcIn),
-                  ))
-            ],
-          )
+          InkWell(
+              onTap: () => _showPostMenuModal(context),
+              child: SvgPicture.asset(
+                ImgAssets.threeDotsIconSVG,
+                width: 4.sp,
+                height: 4.sp,
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).textTheme.displayLarge!.color!,
+                    BlendMode.srcIn),
+              ))
         ],
       ),
     );

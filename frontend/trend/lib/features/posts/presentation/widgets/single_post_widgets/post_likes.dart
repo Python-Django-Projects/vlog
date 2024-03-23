@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trend/config/locale/app_localizations.dart';
 import 'package:trend/core/extenstions/media_query_values.dart';
+import '../../../../../core/utils/timeago_utils.dart';
 import '../../../../../core/widgets/custom_cached_image.dart';
 
 class PostLikes extends StatefulWidget {
@@ -107,14 +108,13 @@ class _PostLikesState extends State<PostLikes> {
             ),
           ),
           Container(
-            margin: EdgeInsetsDirectional.symmetric(horizontal: 18.sp),
+            margin: EdgeInsetsDirectional.only(end: 12.sp),
             child: Text(
-              "1 hour ago",
-              // formatTimeAgo(DateTime.now()),
+              TimeAgo.format(DateTime.now().subtract(const Duration(days: 2))),
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   color: Theme.of(context).textTheme.bodySmall!.color!,
-                  fontSize: 11.sp,
+                  fontSize: 12.sp,
                   overflow: TextOverflow.ellipsis),
             ),
           ),

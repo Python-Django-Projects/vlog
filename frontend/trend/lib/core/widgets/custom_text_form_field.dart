@@ -88,7 +88,10 @@ class CustomTextFormField extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: 16.sp,
               )),
-      style: style ?? TextStyle(fontSize: 15.sp),
+      style: style ??
+          TextStyle(
+              fontSize: 15.sp,
+              color: Theme.of(context).textTheme.displayLarge?.color),
       obscureText: obscureText,
       validator: validator,
       controller: controller,

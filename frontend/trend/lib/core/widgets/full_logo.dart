@@ -11,10 +11,11 @@ class FullLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       height: size,
       child: SvgPicture.asset(
-        ImgAssets.logoDarkSvg,
+        isDark ? ImgAssets.logoWhiteSvg : ImgAssets.logoDarkSvg,
         height: size,
       ),
     );
