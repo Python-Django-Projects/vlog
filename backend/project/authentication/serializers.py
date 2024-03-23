@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import CustomUser
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,3 +42,27 @@ class CustomUserRegisterSerializer(serializers.ModelSerializer):
 
 class ResetPasswordEmailSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
+    
+import logging
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+logger = logging.getLogger(__name__)
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        token = self.get_token(self.user)
+
+        # Add user data to the response
+        data['id'] = self.user.id
+        data['user'] = str(self.user)
+
+        # Check if the user has an image profile and add its URL to the response
+        if hasattr(self.user, 'image_profile') and self.user.image_profile:
+            image_url = self.user.image_profile.url
+            logger.info(f"Image URL: {image_url}")  # Log the image URL for debugging
+            data['image_profile'] = image_url
+        else:
+            data['image_profile'] = None  # Set default value if no image profile
+
+        return data
