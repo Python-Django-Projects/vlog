@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:trend/core/resources/color_manager.dart';
+import 'package:go_router/go_router.dart';
+import 'package:trend/config/routes/app_routes.dart';
 import 'package:trend/features/profile/presentation/widgets/single_profile_button.dart';
 
-class ProfileButtonsWidget extends StatelessWidget {
-  const ProfileButtonsWidget({super.key});
+class CurrentUserProfileButtonsWidget extends StatelessWidget {
+  const CurrentUserProfileButtonsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,10 @@ class ProfileButtonsWidget extends StatelessWidget {
         children: [
           Expanded(
               child: SingleProfileButtonWidget(
-            title: "Follow",
-            onPressed: () {},
-            backgroundColor: Theme.of(context).primaryColor,
-            titleColor: kWhiteColor,
-          )),
+                  title: "Edit profile",
+                  onPressed: () {
+                    context.go(Routes.editProfile);
+                  })),
           Gap(20.sp),
           Expanded(
               child: SingleProfileButtonWidget(

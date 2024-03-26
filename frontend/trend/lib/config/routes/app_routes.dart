@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trend/features/posts/presentation/pages/explore_page.dart';
 import 'package:trend/features/posts/presentation/pages/taken_media_preview_page.dart';
+import 'package:trend/features/profile/presentation/pages/edit_profile.dart';
 import 'package:trend/features/profile/presentation/pages/profile_page.dart';
+import 'package:trend/features/profile/presentation/pages/user_profile_page.dart';
 import 'package:trend/features/settings/presentation/pages/settings_page.dart';
 import '../../core/utils/shared_pref.dart';
 import '../../features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
@@ -19,7 +21,10 @@ import '../locale/app_localizations.dart';
 
 class Routes {
   static String initialPage = '/';
+
   static String posts = '/posts';
+  static String userProfile = '/posts/user';
+
   static String explore = '/explore';
   static String camera = '/camera';
   static String takenMediaPreview = '/camera/preview';
@@ -27,6 +32,7 @@ class Routes {
 
   static String profile = '/profile';
   static String settings = '/profile/settings';
+  static String editProfile = '/profile/edit';
 
   static String login = '/login';
   static String signUp = '/login/signUp';
@@ -70,7 +76,14 @@ final router = GoRouter(
           pageBuilder: (context, state) => const NoTransitionPage(
             child: PostsPage(),
           ),
-          routes: const [],
+          routes: [
+            GoRoute(
+                path: "user",
+                pageBuilder: (context, state) => const NoTransitionPage(
+                      child: UserProfilePage(),
+                    ),
+                routes: const []),
+          ],
         ),
         GoRoute(
           path: Routes.vlog,
@@ -107,11 +120,17 @@ final router = GoRouter(
           ),
           routes: [
             GoRoute(
-                path: "settings",
-                pageBuilder: (context, state) => const NoTransitionPage(
-                      child: SettingsPage(),
-                    ),
-                routes: const []),
+              path: "edit",
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: EditProfilePage(),
+              ),
+            ),
+            GoRoute(
+              path: "settings",
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: SettingsPage(),
+              ),
+            ),
           ],
         ),
       ],

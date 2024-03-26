@@ -10,7 +10,6 @@ import 'package:trend/core/utils/app_divider.dart';
 import 'package:trend/core/utils/dialog_utils.dart';
 import 'package:trend/core/utils/modal_sheet_utils.dart';
 import 'package:trend/features/settings/presentation/widgets/settings_tile.dart';
-
 import '../../../../core/bloc/theme_cubit/theme_cubit.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -25,13 +24,13 @@ class SettingsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SettingsTileWidget(
-              title: "Language".hardcoded,
-              onTap: () {
-                _languageModal(context);
-              },
-              iconIAssetUrl: ImgAssets.languageIconSVG,
-            ),
+            // SettingsTileWidget(
+            //   title: "Language".hardcoded,
+            //   onTap: () {
+            //     _languageModal(context);
+            //   },
+            //   iconIAssetUrl: ImgAssets.languageIconSVG,
+            // ),
             SettingsTileWidget(
               title: "Theme".hardcoded,
               onTap: () {

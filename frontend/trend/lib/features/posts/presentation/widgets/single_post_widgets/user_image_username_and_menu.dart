@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:trend/config/routes/app_routes.dart';
 import 'package:trend/core/resources/assets_manager.dart';
 
 import '../../../../../core/widgets/custom_cached_image.dart';
@@ -26,29 +28,28 @@ class _UserImageAndUsernameAndMenuState
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () async {},
-                child: CustomCachedImageWidget(
+          GestureDetector(
+            onTap: () async {
+              context.go(Routes.userProfile);
+            },
+            child: Row(
+              children: [
+                CustomCachedImageWidget(
                   addBorder: true,
                   size: 38.sp,
                   imageUrl:
                       "https://www.thefashionisto.com/wp-content/uploads/2021/03/Attractive-Man-Selfie-Sunglasses-Smiling.jpg",
                 ),
-              ),
-              SizedBox(width: 10.sp),
-              GestureDetector(
-                onTap: () async {},
-                child: Text(
+                SizedBox(width: 10.sp),
+                Text(
                   "rabeeomran",
                   style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.sp,
-                  ),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12.sp,
+                      color: Theme.of(context).textTheme.displayLarge!.color!),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           InkWell(
               onTap: () => _showPostMenuModal(context),

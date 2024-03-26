@@ -152,4 +152,23 @@ ThemeData get darkTheme => ThemeData.dark(useMaterial3: true).copyWith(
             fontSize: 14.sp,
             color: kHeadlineMediumColor),
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        floatingLabelStyle: TextStyle(fontSize: 16.sp),
+        hintStyle: TextStyle(
+            fontSize: 15.sp,
+            color: kLightBorderColor,
+            fontWeight: FontWeight.w400),
+        labelStyle: TextStyle(
+            fontSize: 15.sp,
+            color: kLightBorderColor,
+            fontWeight: FontWeight.w400),
+        isDense: true,
+        contentPadding:
+            EdgeInsets.symmetric(horizontal: 16.sp, vertical: 12.sp),
+        border: _inputBorder(kDarkGreyColor),
+        focusedBorder: _inputBorder(kMainColor),
+        errorBorder: _inputBorder(kRedColor),
+        enabledBorder: _inputBorder(kDarkGreyColor),
+        disabledBorder: _inputBorder(kDarkGreyColor),
+      ),
     );

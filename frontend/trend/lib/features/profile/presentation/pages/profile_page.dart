@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trend/config/routes/app_routes.dart';
 import 'package:trend/core/resources/assets_manager.dart';
-import 'package:trend/features/profile/presentation/widgets/profile_buttons.dart';
+import 'package:trend/features/profile/presentation/widgets/current_user_profile_buttons.dart';
 import 'package:trend/features/profile/presentation/widgets/profile_posts.dart';
 import '../widgets/profile_image_and_cover.dart';
 import '../widgets/profile_informations.dart';
@@ -51,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Gap(8.sp),
               const ProfileInformationsWidget(),
               Gap(8.sp),
-              const ProfileButtonsWidget(),
+              const CurrentUserProfileButtonsWidget(),
               Gap(8.sp),
               const ProfilePostsWidget()
             ],

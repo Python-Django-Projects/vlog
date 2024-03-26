@@ -12,6 +12,11 @@ class ImgAssets {
   static const String settings2IconSVG = "$iconsPath/settings2.svg";
   static const String languageIconSVG = "$iconsPath/language.svg";
   static const String userIconSVG = "$iconsPath/user.svg";
+  static const String galleryIconSVG = "$iconsPath/gallery.svg";
+  static const String gallery2IconSVG = "$iconsPath/gallery2.svg";
+  static const String camera2IconSVG = "$iconsPath/camera2.svg";
+  static const String trashIconSVG = "$iconsPath/trash.svg";
+  static const String editIconSVG = "$iconsPath/edit.svg";
   static const String themeIconSVG = "$iconsPath/theme.svg";
   static const String lightThemeIconSVG = "$iconsPath/light_theme.svg";
 
